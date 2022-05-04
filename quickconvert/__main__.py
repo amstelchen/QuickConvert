@@ -43,7 +43,7 @@ def config_load():
         os.mkdir(os.path.join(os.path.expanduser("~/.config"),"quickconvert"))
 
     if os.path.exists(config_file):
-        print(config_file)
+        #print(config_file)
         config_desc = open(os.path.join(config_path, "quickconvert.conf"), 'r', newline="\n")
         lines = config_desc.readlines()
         #print("Category:" + lines[0].split('=')[1].rstrip())
@@ -92,9 +92,6 @@ class MainDialog(wx.Dialog):
         label_1 = wx.StaticText(self, wx.ID_ANY, _("Category:"))
         label_1.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
         grid_sizer_1.Add(label_1, 0, 0, 0)
-
-        self.cmbFrom = wx.ComboBox(self, wx.ID_ANY, choices=Categories, style=wx.CB_DROPDOWN | wx.CB_READONLY)
-        grid_sizer_1.Add(self.cmbFrom, 0, wx.ALL, 0)
 
         self.cmbCategory = wx.ComboBox(self, wx.ID_ANY, choices=Categories, style=wx.CB_DROPDOWN | wx.CB_READONLY)
         self.cmbCategory.SetMinSize(wx.DLG_UNIT(self.cmbCategory, wx.Size(150, 14)))
