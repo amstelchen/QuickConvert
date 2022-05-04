@@ -31,6 +31,26 @@ Categories = [
     "Volume"
 ]
 
+Length = {
+    "kilometre" : 1000,
+    "Meter" :  1,
+    "Centimeter" : 0.01,
+    "Millimetre" : 0.001,
+    "micrometres" : 0.0001,
+    "Nanometre" : 0.00001,
+    "Mile" : 1609.34,
+    "Yard" : 0.9144,
+    "Foot" : 0.3048,
+    "Inch" : 0.0254,
+    "Nautical mile" : 1852
+}
+
+def convert(Category: str, FromUnit: str, ToUnit: str, Amount: float):
+    #match Category:
+    if Category == "Length":
+        #return Length[Length.index("Meter") + 1] / Length[Length.index("Yard") + 1] * Amount
+        return format(Length.get(FromUnit) / Length.get(ToUnit) * Amount, '.4f')
+
 def config_load():
     global Category
     global WinPos
@@ -91,46 +111,65 @@ class MainDialog(wx.Dialog):
 
         sizer_1 = wx.BoxSizer(wx.VERTICAL)
 
-        grid_sizer_1 = wx.FlexGridSizer(3, 2, 10, 30)
+        #grid_sizer_1 = wx.FlexGridSizer(3, 3, 10, 30)
+        grid_sizer_1 = wx.GridBagSizer(10, 10)
         sizer_1.Add(grid_sizer_1, 1, wx.ALL | wx.EXPAND, 5)
 
         label_1 = wx.StaticText(self, wx.ID_ANY, _("Category:"))
         label_1.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
-        grid_sizer_1.Add(label_1, 0, 0, 0)
+        #grid_sizer_1.Add(label_1, 0, 0, 0)
+        grid_sizer_1.Add(label_1, (0, 0), (1, 1), 0, 0)
 
         self.cmbCategory = wx.ComboBox(self, wx.ID_ANY, choices=Categories, style=wx.CB_DROPDOWN | wx.CB_READONLY)
         self.cmbCategory.SetMinSize(wx.DLG_UNIT(self.cmbCategory, wx.Size(150, 14)))
         self.cmbCategory.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
-        grid_sizer_1.Add(self.cmbCategory, 0, wx.ALL, 0)
+        #grid_sizer_1.Add(self.cmbCategory, 0, wx.ALL, 0)
+        grid_sizer_1.Add(self.cmbCategory, (0, 1), (1, 2), wx.ALL, 0)
+
         #index = 0
         #for iCategory in Categories:
         #    index = self.cmbCategory.Insert(iCategory, index)
         #    index += 1
-        self.cmbCategory.SetValue(Category)
+        #self.cmbCategory.SetValue(Category)
 
         label_2 = wx.StaticText(self, wx.ID_ANY, _("Source unit:"))
         label_2.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
-        grid_sizer_1.Add(label_2, 0, 0, 0)
+        #grid_sizer_1.Add(label_2, 0, 0, 0)
+        grid_sizer_1.Add(label_2, (1, 0), (1, 1), 0, 0)
+
+        self.cmbSourceUnit = wx.ComboBox(self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN)
+        self.cmbSourceUnit.SetMinSize(wx.DLG_UNIT(self.cmbSourceUnit, wx.Size(75, 14)))
+        self.cmbSourceUnit.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
+        #grid_sizer_1.Add(self.cmbSourceUnit, 0, wx.ALL, 0)
+        grid_sizer_1.Add(self.cmbSourceUnit, (1, 1), (1, 1), 0, 0)
 
         self.textSource = wx.TextCtrl(self, wx.ID_ANY, "")
         self.textSource.SetMinSize(wx.DLG_UNIT(self.textSource, wx.Size(100, 14)))
         self.textSource.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
-        grid_sizer_1.Add(self.textSource, 0, 0, 0)
+        #grid_sizer_1.Add(self.textSource, 0, 0, 0)
+        grid_sizer_1.Add(self.textSource, (1, 2), (1, 1), 0, 0)
 
         label_3 = wx.StaticText(self, wx.ID_ANY, _("Target unit:"))
         label_3.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
-        grid_sizer_1.Add(label_3, 0, 0, 0)
+        #grid_sizer_1.Add(label_3, 0, 0, 0)
+        grid_sizer_1.Add(label_3, (2, 0), (1, 1), 0, 0)
+
+        self.cmbTargetUnit = wx.ComboBox(self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN)
+        self.cmbTargetUnit.SetMinSize(wx.DLG_UNIT(self.cmbTargetUnit, wx.Size(75, 14)))
+        self.cmbTargetUnit.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
+        grid_sizer_1.Add(self.cmbTargetUnit, (2, 1), (1, 1), 0, 0)
 
         self.textTarget = wx.TextCtrl(self, wx.ID_ANY, "")
         self.textTarget.SetMinSize(wx.DLG_UNIT(self.textTarget, wx.Size(100, 14)))
         self.textTarget.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
-        grid_sizer_1.Add(self.textTarget, 0, 0, 0)
+        #grid_sizer_1.Add(self.textTarget, 0, 0, 0)
+        grid_sizer_1.Add(self.textTarget, (2, 2), (1, 1), 0, 0)
 
         sizer_2 = wx.StdDialogButtonSizer()
         sizer_1.Add(sizer_2, 0, wx.ALIGN_CENTER_HORIZONTAL | wx.ALL, 4)
 
-        self.button_OK = wx.Button(self, wx.ID_OK, "")
-        self.button_OK.SetDefault()
+        self.button_OK = wx.Button(self, wx.ID_OK, "Convert")
+        #self.button_OK.SetDefault()
         sizer_2.AddButton(self.button_OK)
 
         self.button_CANCEL = wx.Button(self, wx.ID_CANCEL, "")
@@ -151,7 +190,9 @@ class MainDialog(wx.Dialog):
         self.button_OK.Bind(wx.EVT_BUTTON, self.event_Convert)
         self.button_CANCEL.Bind(wx.EVT_BUTTON, self.event_Close)
         self.button_HELP.Bind(wx.EVT_BUTTON, self.event_Help)
-        self.cmbCategory.Bind(wx.EVT_COMBOBOX, self.event_Combo)
+        self.cmbCategory.Bind(wx.EVT_COMBOBOX, self.event_ComboCategory)
+        self.cmbSourceUnit.Bind(wx.EVT_COMBOBOX, self.event_ComboSource)
+        self.cmbTargetUnit.Bind(wx.EVT_COMBOBOX, self.event_ComboTarget)
         # end wxGlade
 
     def event_Help(self, event):  # wxGlade: MainDialog.<event_handler>
@@ -159,10 +200,38 @@ class MainDialog(wx.Dialog):
         webbrowser.open(url)
         event.Skip()
     def event_Convert(self, event):  # wxGlade: MainDialog.<event_handler>
-        print("Event handler 'event_Convert' not implemented!")
+        #print("Event handler 'event_Convert' not implemented!")
+        #self.textTarget.SetValue("hallo")
+        #result = str(convert("Length", "Meter", "Yard", float(self.textSource.Value)))
+        self.textSource.BackgroundColour = wx.Colour(wx.WHITE)
+        self.textTarget.BackgroundColour = wx.Colour(wx.WHITE)
+        self.cmbSourceUnit.BackgroundColour = wx.Colour(wx.WHITE)
+        self.cmbTargetUnit.BackgroundColour = wx.Colour(wx.WHITE)
+        try:
+            result = str(convert(self.cmbCategory.Value, self.cmbSourceUnit.Value, self.cmbTargetUnit.Value, float(self.textSource.Value)))
+            self.textTarget.Value = result
+        except ValueError:
+            self.textSource.BackgroundColour = wx.Colour(wx.RED)
+        except TypeError:
+            self.cmbSourceUnit.BackgroundColour = wx.Colour(wx.RED)
+            self.cmbTargetUnit.BackgroundColour = wx.Colour(wx.RED)
+        #finally:
+        #print(result)
+        #event.Skip()
+    def event_ComboCategory(self, event):  # wxGlade: MainDialog.<event_handler>
+        #print("Event handler 'event_ComboCategory' not implemented!")
+        self.cmbSourceUnit.Clear()
+        self.cmbTargetUnit.Clear()
+        for index, Unit in enumerate(Length):
+            #self.cmbSourceUnit.Insert(Unit[1::2], Unit[1::1])
+            self.cmbSourceUnit.Insert(Unit, index)
+            self.cmbTargetUnit.Insert(Unit, index)
         event.Skip()
-    def event_Combo(self, event):  # wxGlade: MainDialog.<event_handler>
-        print("Event handler 'event_Combo' not implemented!")
+    def event_ComboSource(self, event):  # wxGlade: MainDialog.<event_handler>
+        print("Event handler 'event_ComboSource' not implemented!")
+        event.Skip()
+    def event_ComboTarget(self, event):  # wxGlade: MainDialog.<event_handler>
+        print("Event handler 'event_ComboTarget' not implemented!")
         event.Skip()
     def event_Close(self, event):  # wxGlade: MainDialog.<event_handler>
         config_save(self.GetPosition())
