@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "quickconvert"
+version = "0.1.0"
+description = "A tool to quickly convert from one unit to another, providing numerous units to choose from."
+authors = ["Michael John <michael.john@gmx.at>"]
+license = "GPL"
+include = ["images/*", "locales/*"]
+
+[tool.poetry.scripts]
+quickconvert = 'quickconvert.__main__:main'
+
+[tool.poetry.dependencies]
+python = "^3.8"
+wxPython = "^4.1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+homepage = "https://github.com/amstelchen/QuickConvert"
+repository = "https://github.com/amstelchen/QuickConvert"
+documentation = "https://github.com/amstelchen/QuickConvert"
