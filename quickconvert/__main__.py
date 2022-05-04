@@ -74,6 +74,11 @@ def config_save(WinPos):
 class MainDialog(wx.Dialog):
     def __init__(self, *args, **kwds):
         # begin wxGlade: MainDialog.__init__
+        #gettextobj = gettext.translation('quickconvert', languages=['de'])
+        #gettextobj.install("quickconvert")
+        #_ = gettextobj.gettext
+        def _(message: str):
+            return message
         config_load()
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_DIALOG_STYLE
         wx.Dialog.__init__(self, *args, **kwds)
@@ -176,7 +181,7 @@ class QCApp(wx.App):
 # end of class QCApp
 
 def main():
-    gettext.install("app") # replace with the appropriate catalog name
+    gettext.install("quickconvert") # replace with the appropriate catalog name
 
     app = QCApp(0)
     app.MainLoop()
