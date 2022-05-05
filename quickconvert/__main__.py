@@ -14,6 +14,8 @@ import gettext
 import webbrowser, os, sys, string
 #from xdg.BaseDirectory import xdg_config_home
 
+from .units import *
+
 Categories = [
     "Area",
     "Data Transfer Rate",
@@ -31,25 +33,12 @@ Categories = [
     "Volume"
 ]
 
-Length = {
-    "kilometre" : 1000,
-    "Meter" :  1,
-    "Centimeter" : 0.01,
-    "Millimetre" : 0.001,
-    "micrometres" : 0.0001,
-    "Nanometre" : 0.00001,
-    "Mile" : 1609.34,
-    "Yard" : 0.9144,
-    "Foot" : 0.3048,
-    "Inch" : 0.0254,
-    "Nautical mile" : 1852
-}
-
 def convert(Category: str, FromUnit: str, ToUnit: str, Amount: float):
     #match Category:
-    if Category == "Length":
+    #if Category == "Length":
         #return Length[Length.index("Meter") + 1] / Length[Length.index("Yard") + 1] * Amount
-        return format(Length.get(FromUnit) / Length.get(ToUnit) * Amount, '.4f')
+        #return format(Length.get(FromUnit) / Length.get(ToUnit) * Amount, '.4f')
+    return format(globals()[Category].get(FromUnit) / globals()[Category].get(ToUnit) * Amount, '.4f')
 
 def config_load():
     global Category
@@ -137,7 +126,7 @@ class MainDialog(wx.Dialog):
         #grid_sizer_1.Add(label_2, 0, 0, 0)
         grid_sizer_1.Add(label_2, (1, 0), (1, 1), 0, 0)
 
-        self.cmbSourceUnit = wx.ComboBox(self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN)
+        self.cmbSourceUnit = wx.ComboBox(self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN | wx.CB_READONLY)
         self.cmbSourceUnit.SetMinSize(wx.DLG_UNIT(self.cmbSourceUnit, wx.Size(75, 14)))
         self.cmbSourceUnit.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
         #grid_sizer_1.Add(self.cmbSourceUnit, 0, wx.ALL, 0)
@@ -154,7 +143,7 @@ class MainDialog(wx.Dialog):
         #grid_sizer_1.Add(label_3, 0, 0, 0)
         grid_sizer_1.Add(label_3, (2, 0), (1, 1), 0, 0)
 
-        self.cmbTargetUnit = wx.ComboBox(self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN)
+        self.cmbTargetUnit = wx.ComboBox(self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN | wx.CB_READONLY)
         self.cmbTargetUnit.SetMinSize(wx.DLG_UNIT(self.cmbTargetUnit, wx.Size(75, 14)))
         self.cmbTargetUnit.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "Sans"))
         grid_sizer_1.Add(self.cmbTargetUnit, (2, 1), (1, 1), 0, 0)
@@ -222,7 +211,9 @@ class MainDialog(wx.Dialog):
         #print("Event handler 'event_ComboCategory' not implemented!")
         self.cmbSourceUnit.Clear()
         self.cmbTargetUnit.Clear()
-        for index, Unit in enumerate(Length):
+        #print(globals()["Area"])
+        #for index, Unit in enumerate(Length):
+        for index, Unit in enumerate(globals()[self.cmbCategory.Value.replace(' ', '')]):
             #self.cmbSourceUnit.Insert(Unit[1::2], Unit[1::1])
             self.cmbSourceUnit.Insert(Unit, index)
             self.cmbTargetUnit.Insert(Unit, index)
