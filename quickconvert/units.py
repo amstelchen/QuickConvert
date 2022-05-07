@@ -10,58 +10,58 @@ Area = {
 }
 
 DataTransferRate = {
-    "Bit per second",
-    "Kilobit per second",
-    "Kilobyte per second",
-    "Kibibit per second",
-    "Megabit per second",
-    "Megabyte per second",
-    "Mebibit per second",
-    "Gigabit per second",
-    "Gigabyte per second",
-    "Gibibit per second",
-    "Terabit per second",
-    "Terabyte per second",
-    "Tebibit per second"
+    "Bit per second": 1,
+    "Kilobit per second": 1000,
+    "Kilobyte per second": 8 * 1000,
+    "Kibibit per second": 1024,
+    "Megabit per second": 1000 ** 2,
+    "Megabyte per second": 8 * 1000 ** 2,
+    "Mebibit per second": 1024 ** 2,
+    "Gigabit per second": 1000 ** 2,
+    "Gigabyte per second": 8 * 1000 ** 3,
+    "Gibibit per second": 1024 ** 3,
+    "Terabit per second": 1000 ** 2,
+    "Terabyte per second": 8 * 1000 ** 4,
+    "Tebibit per second": 1024 ** 4,
 }
 
 
 DigitalStorage = {
-    "Bit",
-    "Kilobit",
-    "Kibibit",
-    "Megabit",
-    "Mebibit",
-    "Gigabit",
-    "Gibibit",
-    "Terabit",
-    "Tebibit",
-    "Petabit",
-    "Pebibit",
-    "Byte",
-    "Kilobyte",
-    "Kibibyte",
-    "Megabyte",
-    "Mebibyte",
-    "Gigabyte",
-    "Gibibyte",
-    "Terabyte",
-    "Tebibyte",
-    "Petabyte",
-    "Pebibyte"
+    "Bit": 1,
+    "Kilobit": 1000,
+    "Kibibit": 1024,
+    "Megabit": 1000 ** 2,
+    "Mebibit": 1024 ** 2,
+    "Gigabit": 1000 ** 3,
+    "Gibibit": 1024 ** 3,
+    "Terabit": 1000 ** 4,
+    "Tebibit": 1024 ** 4,
+    "Petabit": 1000 ** 5,
+    "Pebibit": 1024 ** 6,
+    "Byte": 8,
+    "Kilobyte": 8 * 1000,
+    "Kibibyte": 8 * 1024,
+    "Megabyte": 8 * 1000 ** 2,
+    "Mebibyte": 8 * 1024 ** 2,
+    "Gigabyte": 8 * 1000 ** 3,
+    "Gibibyte": 8 * 1024 ** 3,
+    "Terabyte": 8 * 1000 ** 4,
+    "Tebibyte": 8 * 1024 ** 4,
+    "Petabyte": 8 * 1000 ** 5,
+    "Pebibyte": 8 * 1024 ** 5,
 }
 
 Energy = {
-    "Joule",
-    "Kilojoule",
-    "Gram calorie",
-    "Kilocalorie",
-    "Watt hour",
-    "kilowatt hour",
-    "Electronvolt",
-    "British thermal unit",
-    "US therm",
-    "Foot-pound"
+    "Joule": 1,
+    "Kilojoule": 1000,
+    "Gram calorie": 4.184,
+    "Kilocalorie": 4184,
+    "Watt hour": 3600,
+    "kilowatt hour":  3.6e+6,
+    "Electronvolt": 6.242e+18,
+    "British thermal unit": 1055,
+    "US therm": 1.055e+8,
+    "Foot-pound": 1.356
 }
 
 Frequency = {
@@ -93,16 +93,16 @@ Length = {
 }
 
 Mass = {
-    "tonne",
-    "Kilogram",
-    "Gram",
-    "Milligram",
-    "Microgram",
-    "Imperial ton",
-    "US ton",
-    "Stone",
-    "Pound",
-    "Ounce"
+    "tonne": 1000,
+    "Kilogram": 1,
+    "Gram": 0.001,
+    "Milligram": 0.0001,
+    "Microgram": 0.00001,
+    "Imperial / long ton": 1016,
+    "US / short ton": 907,
+    "Stone": 6.35,
+    "Pound": 2.205,
+    "Ounce": 35.274
 }
 
 PlaneAngle = {
@@ -123,11 +123,11 @@ Pressure = {
 }
 
 Speed = {
-    "Miles per hour",
-    "Foot per second",
-    "Meter per second",
-    "Kilometer per hour",
-    "Knot"
+    "Miles per hour": 1.609,
+    "Foot per second": 1.097,
+    "Meter per second": 3.6,
+    "Kilometer per hour": 1,
+    "Knot": 1.852
 }
 
 Temperature = {
@@ -137,18 +137,18 @@ Temperature = {
 }
 
 Time = {
-    "Nanosecond",
-    "Microsecond",
-    "Millisecond",
-    "Second",
-    "Minute",
-    "Hour",
-    "Day",
-    "Week",
-    "Month",
-    "Calendar year",
-    "Decade",
-    "Century"
+    "Nanosecond": 1e+9,
+    "Microsecond": 1e+6,
+    "Millisecond": 1000,
+    "Second": 1,
+    "Minute": 60,
+    "Hour": 3600,
+    "Day": 86400,
+    "Week": 604800,
+    "Month": 2.628e+6,
+    "Calendar year": 3.154e+7,
+    "Decade": 3.154e+8,
+    "Century": 3.154e+9,
 }
 
 Volume = {
